@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Python Flask Upload and display image</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<p><h1 align="center">Image Color Reconstruction Using Unsupervised Machine Learning</h1></p>
+<div class="container">
+<div class="row">
+    <h2>Select a file to upload</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <p>
+          <b>Original Image</b>
+        </p>
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+        <p>
+        </p>
+        <p>
+          <b>Reconstructed Image using {{n}} colors</b>
+        </p>
+        <div>
+            <img src="{{ url_for('display_image', filename=filename2) }}">
+        </div>
+        <p>
+        </p>
+        <p>
+        </p>
+    {% endif %}
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                <b>Input n colors:</b>
+                <input type="text" name="number" class="form-control" autocomplete="off" required placeholder="Enter number of colors">
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit" class="btn btn-info">
+        </p>
+        <p>
+            <small>made by karlou :) </small>
+        </p>
+    </form>
+</div>
+</div>
+</body>
+</html>
